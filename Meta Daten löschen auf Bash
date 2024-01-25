@@ -1,0 +1,21 @@
+# Beachten Sie das sie das Tool Exiftool installieren müssen! (siehe Zeile 6)
+#!/bin/bash
+# Funktion, um EXIF-Metadaten von Bildern zu entfernen
+function Remove-ImageMetadata {
+   # Der vollständige Pfad zu exiftool
+   exifToolPath="/usr/bin/exiftool"  # Passe dies an den Pfad von exiftool auf deinem System an
+
+   if [ -e "$1" ]; then
+       # Aufruf von exiftool mit dem vollständigen Pfad
+       $exifToolPath -all= "$1"
+       echo "Metadaten von '$1' wurden erfolgreich gelöscht."
+   else
+       echo "Die angegebene Datei '$1' existiert nicht."
+   fi
+}
+
+# Eingabe des Dateipfads
+read -p "Geben Sie den Pfad zur Bilddatei ein, deren Metadaten gelöscht werden sollen: " FilePath
+
+# Metadaten der Bilddatei werden entfernt
+Remove-ImageMetadata "$FilePath"
