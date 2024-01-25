@@ -1,0 +1,5 @@
+while ($true) {
+# Wartet 5 Minuten bis zum nächsten Durchlauf Start-Sleep -Seconds 300
+# Schliesst alle offenen Fenster
+Get-Process | Where-Object {$_.MainWindowTitle -ne ""} | Stop-Process
+}
