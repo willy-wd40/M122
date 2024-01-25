@@ -1,0 +1,22 @@
+# Beim Ausführen des Scrips muss das Programm Exiftool installiert werden! (siehe Zeile 8)
+# Funktion, um EXIF-Metadaten von Bildern zu entfernen 
+function Remove-ImageMetadata {
+param(
+[string]$FilePath
+)
+# Der vollständige Pfad zu exiftool.exe
+$exifToolPath = "C:\exiftool.exe"
+try {
+if (Test-Path $FilePath) {
+# Aufruf von exiftool mit dem vollständigen Pfad & $exifToolPath -all= $FilePath
+Write-Host "Metadaten von '$FilePath' wurden erfolgreich gelöscht." -ForegroundColor Green
+} else {
+Write-Host "Die angegebene Datei '$FilePath' existiert nicht." -ForegroundColor Red
+}
+} catch {
+Write-Host "Ein Fehler ist aufgetreten: $_" -ForegroundColor Red
+}
+}
+# Eingabe des Dateipfads
+$FilePath = Read-Host "Geben Sie den Pfad zur Bilddatei ein, deren Metadaten gelöscht werden sollen"
+# Metadaten der Bildatei werden entfernt Remove-ImageMetadata -FilePath $FilePath
